@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jump scare</title>
+
+<style>
+body {
+margin:0px;
+background-color:rgb(31,31,31);
+color:rgb(222,222,222);
+text-align:center;
+}
+
+img.main {
+opacity:1;
+height:97vh;
+width:97vw;
+background-position: center top;
+background-size: contain;
+background-repeat: no-repeat;
+}
+
+#scroll {
+opacity:0.25;
+width:80px;
+background-color:white;
+position:absolute;
+z-index: 2;
+top:0px;
+right:10px;
+}
+#scroll:hover {
+opacity:1;
+}
+
+.active {
+color:red;
+}
+.active:hover {
+color:yellow;
+}
+</style>
+</head>
+
+<body>
+
+<div id="scroll">
+<p><span class="active" onclick="previous()">&#60;</span> <span class="active" onclick="autoselect()">&#62;</span></p>
+</div>
+
+<div id="thetop">
+<div style="margin: 1vh auto; border-style:dashed; border-width:1px; background-color:black;">
+<div id="vis1" style="display:block;"><img class="main" id="mainpic" src="file:///C:/Users/James/Documents/Webpage_home/img_trans.gif"></div>
+<div id="vis2" style="display:none;">
+<video id="mainvid" autoplay loop style="height:97vh; width:97vw;">
+</video></div>
+</div>
+</div>
+
+<script>
+var x;
+var xmax;
+var mainpic_var = document.getElementById("mainpic");
+
+var array_var = [
+"https://cdn.discordapp.com/attachments/106926162160132096/306400074215325696/jump1_vid.mp4",
+"https://cdn.discordapp.com/attachments/106926162160132096/306401198754365440/jump2_vid.mp4",
+"https://cdn.discordapp.com/attachments/106926162160132096/306401265406181376/jump2b_vid.mp4",
+"https://cdn.discordapp.com/attachments/106926162160132096/306401548374769665/jump3_vid.mp4",
+"https://cdn.discordapp.com/attachments/106926162160132096/306401723054948353/jump4_vid.mp4",
+"https://cdn.discordapp.com/attachments/106926162160132096/306401935593046016/jump5_vid.mp4"
+];
+
+xmax = array_var.length;
+
+randomX();
+
+
+function showpic() {
+var link_var = array_var[x-1];
+
+if (link_var.search(".mp4") == -1) {
+document.getElementById("vis1").style.display = "block";
+document.getElementById("vis2").style.display = "none";
+mainpic_var.style.backgroundImage = "url('" + link_var + "')";
+} else {
+document.getElementById("vis2").style.display = "block";
+document.getElementById("vis1").style.display = "none";
+document.getElementById("mainvid").src = link_var;
+}
+}
+
+function randomX() {
+x = Math.floor((Math.random() * xmax) + 1);
+showpic();
+}
+
+function previous() {
+x = x-2;
+autoselect();
+}
+
+function autoselect() {
+x = x + 1;
+if (x>xmax) {
+x=1;
+}
+if (x<1) {
+x=xmax;
+}
+showpic();
+}
+
+
+</script>
+
+<!--
+
+-->
+
+</body>
+</html>
