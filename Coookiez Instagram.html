@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Instagram Coookiez</title>
+
+<style>
+body {
+margin:0px 0px 8px;
+padding:0px;
+text-align:center;
+}
+
+img.main {
+opacity:1;
+height:100vh;
+width:100vw;
+background-position: center center;
+background-size: contain;
+background-repeat: no-repeat;
+}
+</style>
+</head>
+
+<body id="Xbody" style="overflow:hidden; color:white; background-color:black;">
+
+<div id="thetop">
+<div id="vis1" style="display:block;"><img class="main" id="mainpic" src="file:///C:/Users/James/Documents/Webpage_home/img_trans.gif"></div>
+<div id="vis2" style="display:none;">
+<video id="mainvid" autoplay loop style="width:100vw; height:100vh;">
+</video>
+</div>
+</div>
+
+
+<script>
+var x;
+var xmax;
+var timeout;
+var mainpic_var = document.getElementById("mainpic");
+
+var array_var = [
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/1743021_506105566169063_745927659_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/1741519_406827746120547_543555663_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/914319_1522856681273751_377389185_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/11378595_1652656058298639_1580730677_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/10349627_808674142490879_414887793_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/10632367_694386313977936_321620344_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/10693472_775801992476549_1850827450_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/10731610_376728282485019_1890730682_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/10727576_310109202507333_431322430_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/11055726_938532142843883_936486886_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/11246101_1611171375791128_1968301388_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e15/11282877_901948393211726_1745769061_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/11380963_1459212481041144_185896397_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/11376292_983624295022498_926084263_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/11352105_1602207113361596_982886684_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/11379810_1447674312207535_1247631947_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/10932527_136257060044652_361487389_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/11875498_915151455229704_915351889_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12104951_970873782985718_1760728823_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12142635_403658869823539_1051206028_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12407537_481580345373603_74366025_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12729642_452948471565206_2005776465_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12918457_1529453644026871_1485102786_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12918673_1537645723197482_1559297593_n.jpg",
+"https://scontent-lht6-1.cdninstagram.com/t51.2885-15/e35/12141856_1088583504548833_313199215_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12940327_782757098491043_793139796_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12965812_262931214043758_837697260_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12917949_213760338996333_1848247082_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12912448_1664262107160178_694814534_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/12918042_499515383581576_439903053_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13118073_591843314324326_1239829117_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13166660_236165470107727_772826293_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13167347_639756029511822_1834149209_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13258954_1001996543229473_1868789519_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13109076_1731737603735433_1689269354_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13266786_588814804623445_1691088450_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13402212_565419256953193_317754371_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13320319_505467849642959_180505986_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13423508_1699543393601551_502242532_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13525579_1753080948273203_1892153893_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13534048_632533296901645_1781389889_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13561763_1038968442847125_1736601204_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13768079_1040660139380889_1798456343_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/13744966_184664345277044_367919342_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14449206_1799309726955975_7930729834450255872_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14448159_1784693905111706_5930640247049158656_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14474079_303417413372930_5228606990451736576_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14714579_1700698566915353_7645545960205975552_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14712025_563846700482453_2746420440904761344_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/15056567_1045472352247930_3844498576101081088_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/14709502_469464143224147_8609688284760637440_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/15035788_280575889011146_8190813288456519680_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/16110594_578121219051262_8027375527847264256_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/17438973_1904765149736489_5955179873407336448_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/16906527_659313417586641_8687231071726600192_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/17439294_1580500465298185_8553234959744106496_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/17493593_1388505241211710_7179690927991029760_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/17438499_786796524811483_8652118421296644096_n.jpg",
+"https://scontent-lht6-1.cdninstagram.com/t51.2885-15/e35/17663504_1783345821993332_2497088617185280000_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/19367578_324390587997547_8173908164035477504_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/18888323_229143347588514_4082956092382904320_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/18722199_214241892422881_5187530588952723456_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/18444693_441045219608369_4986852927856443392_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/17882360_1330297213716278_2949664293420793856_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/19624851_334218933677554_5387443174639665152_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/19931500_503428753338282_612393724307046400_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/22709010_2014965052071096_144259262753800192_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/22071355_118569128838517_6225802597337399296_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/21227819_220918165106176_3233024795134132224_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/21149710_327924774319502_3781649499319959552_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/20181122_208309473031957_4246258179270246400_n.jpg",
+"https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/e35/19985814_321421428285179_2362278243827974144_n.jpg"
+];
+
+var timeT = 20000;
+xmax = array_var.length;
+
+autorandom();
+
+
+function showpic() {
+var link_var = array_var[x-1];
+
+if (link_var.search(".mp4") == -1) {
+document.getElementById("vis1").style.display = "block";
+document.getElementById("vis2").style.display = "none";
+mainpic_var.style.backgroundImage = "url('" + link_var + "')";
+} else {
+document.getElementById("vis2").style.display = "block";
+document.getElementById("vis1").style.display = "none";
+document.getElementById("mainvid").src = link_var;
+}
+
+}
+
+
+function autorandom() {
+clearTimeout(timeout);
+x = Math.floor((Math.random() * xmax) + 1);
+showpic();
+timeout = setTimeout(function() {autorandom()}, timeT);
+}
+</script>
+
+<!--
+
+-->
+
+</body>
+</html>
