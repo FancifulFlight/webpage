@@ -25,7 +25,7 @@ background-repeat: no-repeat;
 <body id="Xbody" style="overflow:hidden; color:white; background-color:black;">
 
 <div id="thetop">
-<div id="vis1" style="display:block;"><img class="main" id="mainpic" src="file:///C:/Users/James/Documents/Webpage_home/img_trans.gif"></div>
+<div id="vis1" style="display:block;"><img class="main" id="mainpic" src="https://i.imgur.com/O2MA61X.gif"></div>
 <div id="vis2" style="display:none;">
 <video id="mainvid" autoplay loop style="width:100vw; height:100vh;">
 </video>
@@ -123,7 +123,7 @@ autorandom();
 function showpic() {
 var link_var = array_var[x-1];
 
-if (link_var.search(".mp4") == -1) {
+if (link_var.search("\\.mp4") == -1) {
 document.getElementById("vis1").style.display = "block";
 document.getElementById("vis2").style.display = "none";
 mainpic_var.style.backgroundImage = "url('" + link_var + "')";
@@ -139,8 +139,8 @@ document.getElementById("mainvid").src = link_var;
 function autorandom() {
 clearTimeout(timeout);
 x = Math.floor((Math.random() * xmax) + 1);
-showpic();
 timeout = setTimeout(function() {autorandom()}, timeT);
+showpic();
 }
 </script>
 
